@@ -5,7 +5,7 @@ from quiz_brain import QuizBrain
 
 q_bank = []
 for q in q_data:
-    q = Question(q["text"], q["answer"])
+    q = Question(q["question"], q["correct_answer"])
     q_bank.append(q)
 
 game_end = False
