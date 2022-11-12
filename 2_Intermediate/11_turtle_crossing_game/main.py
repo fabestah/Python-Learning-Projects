@@ -4,15 +4,17 @@ from turtle import Screen
 
 from car_manager import CarManager
 from player import Player
+from scoreboard import Scoreboard
 
 screen = Screen()
 screen.setup(width=600, height=600)
 screen.tracer(0)
+
 player = Player()
 car_man = CarManager()
+scoreboard = Scoreboard()
 
 game_is_on = True
-cars_list = []
 count = 0
 
 screen.listen()
@@ -26,5 +28,13 @@ while game_is_on:
     car_man.spawn_car()
     car_man.move_cars()
 
-    if player.ycor() > 270:
+    # Collision detection
+    for car in car_man.all_cars:
+        if player.distance(car) < 27:
+            game_is_on = False
+            scoreboard.game_over()
+
+    if player.is_at_finish():
+        car_man.level_up()
         player.reset()
+        scoreboard.increase_level()

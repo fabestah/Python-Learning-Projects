@@ -12,11 +12,15 @@ class Player(Turtle):
         self.penup()
         self.speed("fastest")
         self.seth(90)
-        self.goto(STARTING_POSITION)
+        self.reset()
 
     def move(self):
-        new_y = self.ycor() + MOVE_DISTANCE
-        self.goto(0, new_y)
+        self.fd(10)
+
+    def is_at_finish(self):
+        if self.ycor() > FINISH_LINE_Y:
+            return True
+        return False
 
     def reset(self):
         self.goto(STARTING_POSITION)
