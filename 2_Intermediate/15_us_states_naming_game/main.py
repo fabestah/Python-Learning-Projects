@@ -15,13 +15,11 @@ data = pandas.read_csv("50_states.csv")
 states = data["state"].to_list()
 already_guessed = []
 
-while len(already_guessed) < 50:  
+while len(already_guessed) < 50:
     answer_state = screen.textinput(
         title=f"{len(already_guessed)}/50 States", prompt="What's another state's name?"
     )
     answer = answer_state
-
-    
 
     for s in states:
         if answer.lower() == s.lower():
